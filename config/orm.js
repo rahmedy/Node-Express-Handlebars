@@ -2,9 +2,9 @@ const connection = require("../config/connection.js")
 
 const orm = { 
     // Send query to the database grabbing all burgers
-  selectAll: (tableInput, cb) => {
+  selectAll: (table, cb) => {
     const query = "SELECT * FROM ??";
-    return connection.query(query, [tableInput], (err, result) => {
+    return connection.query(query, [table], (err, result) => {
       if (err) throw err;
       cb(result);
     });
