@@ -3,7 +3,7 @@
     
 ![License](https://img.shields.io/badge/License-ISC-blue.svg)
 ## Description
-This application create a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM
+This application is a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM. It showcases the MVC design pattern.
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
