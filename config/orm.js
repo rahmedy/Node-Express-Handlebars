@@ -1,34 +1,37 @@
-const connection = require("../config/connection.js")
+const connection = require('../config/connection.js');
 
-const orm = { 
-    // Send query to the database grabbing all burgers
-  selectAll: (table, cb) => {
-    const query = "SELECT * FROM " + table + ";"
-    return connection.query(query,  (err, result) => {
-      if (err) throw err;
-      cb(result);
-    });
-  },
+const orm = {
+	// Send query to the database grabbing all burgers
+	selectAll: (tableInput, cb) => {
+		const query = "SELECT * FROM ??";
+		return connection.query(query,[tableInput], (err, result) => {
+			if (err) throw err;
+			cb(result);
+		});
+	},
 
-  // Insert new burger into the database
-  insertOne: (table, names, cb) => {
-    const query = "INSERT INTO ?? (name) VALUES (?)"
-    connection.query(query, [table, names], (err, result) => {
-      if (err) throw err;
-        cb(result);
-    });
-  },
+	// Insert new burger into the database
+	insertOne: function(burger_name, cb) {
+        const query = "INSERT INTO burgers (burger_name, devoured) VALUES (?, false)";
+        connection.query(query, [burger_name], function(err, result) {
+            if(err) { 
+                throw err;
+            }
+            cb(result);
+        })
+    },
+	
 
-  // Update burger in the database
-  updateOne: (id, cb) => {
-    const query = "UPDATE ?? SET ?? = (?) WHERE ?? = (?)"
-    connection.query(query, [table, col, val, id_col, id_num], (err, result) => {
-      if (err) {
-        throw err;
-      }
-      cb(result);
-    });
-  },
+	// Update burger in the database
+	updateOne: (id, cb) => {
+    const query = "UPDATE ?? SET devoured = ? WHERE id = ?";
+    connection.query(query, [id], (err, result) => {
+			if (err) {
+				throw err;
+			}
+			cb(result);
+		});
+	}
 };
 
 // Export the orm module
