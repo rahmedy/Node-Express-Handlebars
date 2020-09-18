@@ -1,5 +1,6 @@
 
 // Set up MySQL connection.
+const mysql = require("mysql");
 let connection;
 
 if (process.env.JAWSDB_URL) {
@@ -10,7 +11,7 @@ if (process.env.JAWSDB_URL) {
   port: 3306,
   user: "root",
   password: "Ht208476",
-  database: "burger_db"
+  database: "burgers_db"
 });};
 
 connection.connect(err => {
