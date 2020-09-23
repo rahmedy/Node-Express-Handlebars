@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
 		let hbsObj = {
 			burger: data
 		};
-		
 		res.render('index', hbsObj);
 	})
 });
@@ -16,12 +15,14 @@ router.post('/api/burgers', (req, res) => {
 	burger.create(req.body.burger_name, (result) => {
 		res.json({ id: result.insertId });
 	});
+
 });
 
 router.put('/api/burgers/:id', (req, res) => {
 	burger.update( req.params.id , (result) => {
 		res.json({ id: result.insertId });
 	});
+
 });
 
 module.exports = router;

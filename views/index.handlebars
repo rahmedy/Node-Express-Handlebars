@@ -17,9 +17,10 @@
     
     
     <div class="col">
-      <h2 >Burgerszzz</h2>
+      
+      <h2>Burgerszzz</h2>
       <ul class="list-group">
-        {{#each burgers}}
+        {{#each burger}}
         {{#unless this.devoured}}
         <li class="list-group-item">
           {{burger_name}}
@@ -32,13 +33,15 @@
 
 
     <div class="col">
+      
       <form action="/api/burgers" method="post">
         <div class="form-group">
           <h2 form="burgerSubmit" class="font-weight-bold col d-flex justify-content-center">Add a Burger</h2>
-          <input name="burgerSubmit" type="text" class="form-control"
+          <input id="burgerName" name="burgerSubmit" type="text" class="form-control"
             placeholder="Type Burger Name" required>
             <br>
-        <button type="button" class="btn btn-secondary bg-dark btn-lg btn-block">Add</button>      
+        <button type="button" class="btn btn-secondary bg-dark btn-lg btn-block addBtn">Add</button>   
+
           </div>
       </form>
     </div>
@@ -47,7 +50,7 @@
     <div class="col">
       <h2> Devoured Burgers</h2>
       <ul class="list-group">
-        {{#each burgers}}
+        {{#each burger}}
         {{#if this.devoured}}
         <li class="list-group-item">
           {{burger_name}}
@@ -76,7 +79,7 @@
 </div>
 
 <script>
-    $("button").click(function (event) {
+    $(".devourBtn").click(function (event) {
         const id = event.target.id;
         console.log(id);
         $.ajax({
@@ -84,4 +87,21 @@
             method: "PUT"
         }).then(location.reload())
     })
+
+   $(".addBtn").click(function (event) {
+        const burgerName = {
+         burger_name:  $('#burgerName').val().trim()
+        }
+
+
+        console.log("burgerName", burgerName);
+              $.ajax({
+            url: `/api/burgers`,
+            method: "POST",
+            data: burgerName
+        }).then(location.reload())
+      
+    })
+    
+
 </script>

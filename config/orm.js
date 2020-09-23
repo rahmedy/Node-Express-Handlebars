@@ -24,15 +24,21 @@ const orm = {
 
 	// Update burger in the database
 	updateOne: (id, cb) => {
-    const query = "UPDATE ?? SET devoured = ? WHERE id = ?";
-    connection.query(query, [id], (err, result) => {
+    const query = "UPDATE burgers SET devoured = ? WHERE id = ?";
+    connection.query(query, [true, id], (err, result) => {
 			if (err) {
 				throw err;
 			}
 			cb(result);
 		});
+	console.log('====', query)
 	}
 };
 
 // Export the orm module
 module.exports = orm;
+
+
+// UPDATE table_name
+// SET column1 = value1, column2 = value2, ...
+// WHERE condition;
