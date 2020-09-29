@@ -5,6 +5,9 @@
 ## Description
 This application is a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM. It showcases the MVC design pattern.
 
+## Deployed 
+Link to deployed application on Heroku https://young-refuge-50252.herokuapp.com/
+
 
 ## Table of Contents
 * [Installation](#installation)
